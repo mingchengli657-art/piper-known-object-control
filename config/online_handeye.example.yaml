@@ -1,0 +1,21 @@
+# Fill in calibration for this specific robot/camera pair before using the bridge.
+calibration_confirmed: false
+base_frame: base_link
+tcp_frame: flange_link
+camera_frame: d405_color_optical_frame
+object_frame: object_estimate
+object_pose_camera_topic: /foundationpose/object_pose_camera
+tcp_pose_topic: /feedback/tcp_pose
+object_pose_base_topic: /foundationpose/object_pose_base
+axes_marker_topic: /foundationpose/object_axes_marker
+tcp_pose_assumed_frame: base_link
+tcp_history_size: 200
+max_tcp_time_diff_s: 0.10
+axis_length_m: 0.08
+marker_line_width_m: 0.004
+# Identity placeholder, NOT an actual measurement.
+tcp_T_camera:
+  - [1.0, 0.0, 0.0, 0.0]
+  - [0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0]
+  - [0.0, 0.0, 0.0, 1.0]

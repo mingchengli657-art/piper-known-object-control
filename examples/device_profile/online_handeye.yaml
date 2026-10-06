@@ -1,0 +1,34 @@
+# Runtime hand-eye bridge configuration.
+# Pose convention: T_base_object = T_base_tcp * T_tcp_camera * T_camera_object
+
+base_frame: base_link
+tcp_frame: link6
+camera_frame: d405_color_optical_frame
+object_frame: object_estimate
+
+object_pose_camera_topic: /foundationpose/object_pose_camera
+tcp_pose_topic: /feedback/tcp_pose
+object_pose_base_topic: /foundationpose/object_pose_base
+axes_marker_topic: /foundationpose/object_axes_marker
+
+# This is the previously calibrated point transform p_tcp = tcp_T_camera * p_camera.
+tcp_T_camera:
+  - [0.9977791863, -0.0662632332, -0.0067734228, -0.0123028218]
+  - [0.0638580978,  0.9226997272,  0.3801938410, -0.0739755665]
+  - [-0.0189430378, -0.3797820392, 0.9248820271,  0.0469442357]
+  - [0.0, 0.0, 0.0, 1.0]
+
+# Empty feedback/tcp_pose headers are interpreted as this frame. The Piper
+# driver publishes the TCP pose in the robot base coordinate convention.
+tcp_pose_assumed_frame: base_link
+
+# Match each camera image to the nearest time-stamped TCP feedback sample.
+# FoundationPose inference adds latency; 250 ms is appropriate while the arm
+# is stationary during grasp target capture. Moving-arm tracking should use
+# interpolation instead of merely increasing this window.
+tcp_history_size: 200
+max_tcp_time_diff_s: 0.25
+
+# Marker axis length in meters. This is visualization only.
+axis_length_m: 0.08
+marker_line_width_m: 0.004
