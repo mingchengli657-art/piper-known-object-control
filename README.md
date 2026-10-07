@@ -1,5 +1,9 @@
 # Piper Known-Object Control
 
+**Piper 视觉抓取系列 · 04 / 机械臂控制** · [系列总入口与整套运行指南](https://github.com/mingchengli657-art/piper-vision-grasping)
+
+本模块接收 [FoundationPose](https://github.com/mingchengli657-art/foundationpose-d405-runtime)位姿和[手眼标定](https://github.com/mingchengli657-art/piper_handeye_calibration)外参；目标模型由[物体建模](https://github.com/mingchengli657-art/d405-object-modeling)准备。
+
 Piper X 已知物体的一次性抓取控制工具，从比赛工程 `Piper_Control` 提取。接收 FoundationPose 的位姿和模型标识，经手眼变换、目标冻结、IK 与路径预检查后，执行预抓取、靠近、闭合夹爪及沿基座 +Z 提升 50 mm，结束后保持物体。
 
 当前是**设备相关的实验控制程序**，包含已测设备的夹爪策略和若干物体配置。默认运行演练，不发送控制指令。控制逻辑仍有待完善的行为，见 `docs/KNOWN_ISSUES.md`；整理完成不能等同于换台机械臂后直接可用。
